@@ -3,8 +3,7 @@
 //  TestPageCtrlUITests
 //
 //  Created by Chandramani Patel on 26/09/16.
-//  Copyright © 2016 Ninestars. All rights reserved.
-//
+ //
 
 import XCTest
 
