@@ -41,15 +41,15 @@ class InspirationViewController: UIViewController {
         self.sectionsArray.append("images1.jpeg")
         self.sectionsArray.append("images2.jpeg")
         self.sectionsArray.append("images3.jpg")
-        self.sectionsArray.append("images4.jpeg")
-        self.sectionsArray.append("images1.jpeg")
-        self.sectionsArray.append("images2.jpeg")
-        self.sectionsArray.append("images3.jpg")
-        self.sectionsArray.append("images4.jpeg")
-        self.sectionsArray.append("images1.jpeg")
-        self.sectionsArray.append("images2.jpeg")
-        self.sectionsArray.append("images3.jpg")
-        self.sectionsArray.append("images4.jpeg")
+//        self.sectionsArray.append("images4.jpeg")
+//        self.sectionsArray.append("images1.jpeg")
+//        self.sectionsArray.append("images2.jpeg")
+//        self.sectionsArray.append("images3.jpg")
+//        self.sectionsArray.append("images4.jpeg")
+//        self.sectionsArray.append("images1.jpeg")
+//        self.sectionsArray.append("images2.jpeg")
+//        self.sectionsArray.append("images3.jpg")
+//        self.sectionsArray.append("images4.jpeg")
         
         self.pageControll.numberOfPages = self.sectionsArray.count
 
@@ -63,8 +63,7 @@ class InspirationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-  //  - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-    
+     
      func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView==self.inspCollectionView {
            print("scrollViewDidEndDecelerating")
@@ -101,7 +100,7 @@ class InspirationViewController: UIViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         
-        return CGSize(width: 375, height: 337)
+        return CGSize(width: self.view.frame.size.width, height: 337)
         
         
     }
