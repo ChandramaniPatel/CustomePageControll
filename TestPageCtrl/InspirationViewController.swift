@@ -11,10 +11,47 @@ class InspirationViewController: UIViewController {
     
     @IBOutlet weak var pageControll: UIPageControl!
       var sectionsArray : [String] = []
-      var pageNumber = 0
-     // create an object of
+      private var currentIndex:Int = 0
+
+    // Define bounds
+//    private let maxLimit = 25
+//    private let minLimit = 0
+ 
     
     
+    // Define @IBAction from UIPageControl
+    
+    @IBAction func moveViewLeftRight(sender: UIPageControl) {
+       
+        // Move to Right
+        /*
+        if currentIndex < maxLimit && sender.currentPage > currentIndex {
+           
+            currentIndex += 1
+           let indexPath : IndexPath = IndexPath(item: currentIndex, section: 0)
+           self.inspCollectionView.scrollToItem(at:indexPath, at: .right, animated: true)
+            
+            // Move to Left
+        } else if currentIndex > minLimit {
+            currentIndex -= 1
+            let indexPath : IndexPath = IndexPath(item: currentIndex, section: 0)
+
+            self.inspCollectionView.scrollToItem(at:indexPath, at: .left, animated: true)
+        }
+        */
+        
+        self.inspCollectionView
+            .scrollRectToVisible(CGRect(
+                x: Int(self.inspCollectionView.frame.size.width) * self.pageControll.currentPage,
+                y: 0,
+                width:Int(self.inspCollectionView.frame.size.width),
+                height: Int(self.inspCollectionView.frame.size.height)),
+                                 animated: true)
+
+    }
+
+    // uncomment if you want left and right button too and connect your IBOut to these method
+  /*
     @IBAction func leftButtonAction(_ sender: AnyObject) {
         
         if self.inspCollectionView.contentOffset.x < self.inspCollectionView.contentSize.width-self.inspCollectionView.frame.size.width {
@@ -30,6 +67,7 @@ class InspirationViewController: UIViewController {
         self.inspCollectionView.setContentOffset(CGPoint(x: self.inspCollectionView.contentOffset.x - self.inspCollectionView.frame.size.width,y: 0),animated: true)
          }
     }
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,23 +79,18 @@ class InspirationViewController: UIViewController {
         self.sectionsArray.append("images1.jpeg")
         self.sectionsArray.append("images2.jpeg")
         self.sectionsArray.append("images3.jpg")
-//        self.sectionsArray.append("images4.jpeg")
-//        self.sectionsArray.append("images1.jpeg")
-//        self.sectionsArray.append("images2.jpeg")
-//        self.sectionsArray.append("images3.jpg")
-//        self.sectionsArray.append("images4.jpeg")
-//        self.sectionsArray.append("images1.jpeg")
-//        self.sectionsArray.append("images2.jpeg")
-//        self.sectionsArray.append("images3.jpg")
-//        self.sectionsArray.append("images4.jpeg")
         
         self.pageControll.numberOfPages = self.sectionsArray.count
-
+      
+        // maxLimit = self.pageControll.numberOfPages
         // Do any additional setup after loading the view.
         self.inspCollectionView.isPagingEnabled=true;
         
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        self.view.bringSubview(toFront: self.pageControll)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,8 +102,8 @@ class InspirationViewController: UIViewController {
            print("scrollViewDidEndDecelerating")
          let a = Int(self.inspCollectionView.contentOffset.x/375)
             print(a)
-            pageNumber = a
-            pageControll.currentPage = pageNumber
+            currentIndex = a
+            pageControll.currentPage = currentIndex
 
 
         }
